@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -10,7 +9,8 @@ func main() {
 	//fmt.Println(reverse(901000))
 	//fmt.Println(firstUniqChar("loveleetcode"))
 	//fmt.Println(isPalindrome("`l;`` 1o1 ??;l`"))
-	fmt.Println(myAtoi("0-1"))
+	//fmt.Println(myAtoi("0-1"))
+	//fmt.Println(longestCommonPrefix([]string{"sssdfg", "ssss"}))
 }
 
 /**
@@ -248,7 +248,7 @@ func myAtoi(str string) int {
 		return math.MaxInt32
 	}
 
-	if(1 == positive) {
+	if 1 == positive {
 		sum = -sum
 	}
 
@@ -261,4 +261,45 @@ func myAtoi(str string) int {
 	}
 
 	return sum
+}
+
+/**
+14. 编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串 ""。
+ */
+func longestCommonPrefix(strs []string) string {
+	common := "";
+	if nil == strs {
+		return common
+	}
+	length := len(strs)
+	if length == 0 {
+		return common
+	}
+
+	bytes := make([][]byte, length)
+	minLen := math.MaxInt8
+	for i := 0; i < length; i++ {
+		bytes[i] = []byte(strs[i])
+		tmpLen := len(bytes[i])
+		if minLen > tmpLen {
+			minLen = tmpLen
+		}
+	}
+
+	if 0 == minLen {
+		return common
+	}
+
+	for i := 0; i < minLen; i++ {
+		b :=  bytes[0][i]
+		for j := 1; j < length; j++ {
+			if b != bytes[j][i] {
+				return common
+			}
+		}
+		common = common + string(b)
+	}
+	return common
 }

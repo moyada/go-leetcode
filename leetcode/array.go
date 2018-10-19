@@ -36,6 +36,7 @@ func main() {
 	//	{'.','2','.','9','.','.','.','.','.'},
 	//	{'.','.','4','.','.','.','.','.','.'}}
 	//fmt.Println(isValidSudoku(board))
+	fmt.Println(getFactorial(3))
 }
 
 /**
@@ -352,4 +353,12 @@ func rotateMatrix(matrix [][]int)  {
 			matrix[j][subLen] = tmp
 		}
 	}
+}
+
+func getFactorial(num int) int {
+	total := 1
+	for ; num > 1 ; num-- {
+		total *= num
+	}
+	return total
 }
